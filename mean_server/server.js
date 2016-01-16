@@ -16,13 +16,23 @@ var server = app.listen(5000, function() {
     console.log("//////////////");
 });
 
+// player dictionary
+var player1, player2;
+
 var io = require('socket.io').listen(server);
 io.sockets.on('connection', function(socket) {
     console.log('SERVER::WE ARE USING SOCKETS!');
     console.log(socket.id);
 
+    // Receieves names from a user that logs in from the iOS Client
     socket.on("addPlayer", function (data) {
-        console.log(data);
+        if (!player1) {
+            player1 = data
+        } else if (!player2) {
+            player2 = data
+        }
+        console.log("Player1:", player1);
+        console.log("Player2:", player2);
     });
 });
 

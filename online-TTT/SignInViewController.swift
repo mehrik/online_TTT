@@ -10,6 +10,7 @@ import UIKit
 
 class SignInViewController: UIViewController, cancelProtocol {
     let socket = SocketIOClient(socketURL: "http://localhost:5000")
+    
     @IBOutlet weak var nameTextField: UITextField!
     
     @IBAction func joinButtonPressed(sender: UIButton) {
