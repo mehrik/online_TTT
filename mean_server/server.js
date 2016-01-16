@@ -20,6 +20,10 @@ var io = require('socket.io').listen(server);
 io.sockets.on('connection', function(socket) {
     console.log('SERVER::WE ARE USING SOCKETS!');
     console.log(socket.id);
+
+    socket.on("addPlayer", function (data) {
+        console.log(data);
+    });
 });
 
 

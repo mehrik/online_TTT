@@ -9,12 +9,14 @@
 import UIKit
 
 class SignInViewController: UIViewController, cancelProtocol {
-    
+    let socket = SocketIOClient(socketURL: "http://localhost:5000")
     @IBOutlet weak var nameTextField: UITextField!
     
     @IBAction func joinButtonPressed(sender: UIButton) {
         guard nameTextField.text! != "" else { return }
         print(nameTextField.text!)
+        let playerName = nameTextField.text!
+        socket.emit("addPlayer", playerName)
         performSegueWithIdentifier("SignedInSegue", sender: sender)
     }
     
@@ -32,6 +34,8 @@ class SignInViewController: UIViewController, cancelProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        socket.connect()
+        socket.on("connect") { data, ack in print("Using Sockets") }
         // Do any additional setup after loading the view, typically from a nib.
     }
 
