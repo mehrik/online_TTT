@@ -11,7 +11,6 @@ import UIKit
 class LoadScreenViewController: UIViewController, exitProtocol {
     // change the socket url to whatever your computer's url is
     // look at SocketUrl.swift to if you need to change localhost address
-    let socket = SocketIOClient(socketURL: SocketUrl.url())
     var players = [String]()
     
     weak var cancelDelegate: cancelProtocol?
@@ -36,30 +35,23 @@ class LoadScreenViewController: UIViewController, exitProtocol {
     }
     
     override func viewDidLoad() {
-        print("view DID LOAD")
         self.addHandler()
-        socket.connect()
         super.viewDidLoad()
-    }
-    
-    // if you want to use this for linear in order loading programming
-    override func viewWillAppear(animated: Bool) {
-
-    }
-    
-    func socketFunction(data: AnyObject) {
-        self.players = data[0] as! [String]
-        print(data[0])
-        print(self.players)
-        if self.players.count == 2 {
-            self.performSegueWithIdentifier("playGameSegue", sender: self)
-        }
-        
+        print("view DID LOAD")
     }
     
     func addHandler() {
-        socket.on("connect") { data, ack in print("Using Sockets in LoadScreenViewController") }
-        socket.on("sendNumber") {data, ack in self.socketFunction(data) }
+        socket.on("sendPlayers") {data, ack in
+            print("Inside send players retrieval")
+            self.players = data[0] as! [String]
+            print(data[0])
+            print(self.players)
+            if self.players.count == 2 {
+                self.performSegueWithIdentifier("playGameSegue", sender: self)
+            }
+        }
+        
+        socket.emit("retrievePlayers")
     }
     
     override func didReceiveMemoryWarning() {

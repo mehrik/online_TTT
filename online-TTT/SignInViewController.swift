@@ -11,8 +11,6 @@ import UIKit
 class SignInViewController: UIViewController, cancelProtocol {
     // change the socket url to whatever your computer's url is
     // look at SocketUrl.swift to if you need to change localhost address
-    let socket = SocketIOClient(socketURL: SocketUrl.url())
-    
     @IBOutlet weak var nameTextField: UITextField!
     
     @IBAction func joinButtonPressed(sender: UIButton) {
@@ -39,11 +37,6 @@ class SignInViewController: UIViewController, cancelProtocol {
         super.viewDidLoad()
         socket.connect()
         socket.on("connect") { data, ack in print("Using Sockets in SignInViewController") }
-        // Do any additional setup after loading the view, typically from a nib.
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        socket.on("connect") { data, ack in print("Using Sockets in SignInViewController - viewWillAppear") }
     }
     
     override func didReceiveMemoryWarning() {

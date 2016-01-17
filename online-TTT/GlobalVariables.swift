@@ -1,5 +1,5 @@
 //
-//  socketURL.swift
+//  GlobalFunctions.swift
 //  online-TTT
 //
 //  Created by Maric Sobreo on 1/16/16.
@@ -8,8 +8,4 @@
 
 import Foundation
 
-class SocketUrl {
-    public static func url() -> String {
-        return "http://ADD_NUMBER_HERE:5000"
-    }
-}
+let socket = SocketIOClient(socketURL: SocketUrl.url())
