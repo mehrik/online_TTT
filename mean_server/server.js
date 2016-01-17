@@ -16,7 +16,7 @@ var server = app.listen(5000, function() {
     console.log("//////////////");
 });
 
-// player dictionary
+
 var player = []
 
 var io = require('socket.io').listen(server);
@@ -33,13 +33,13 @@ io.sockets.on('connection', function(socket) {
         }
         console.log("Player1:", player[0]);
         console.log("Player2:", player[1]);
-        socket.broadcast.emit("sendNumber", player);
     });
 
-
-    
+    socket.on("retrievePlayers", function (data) {
+        console.log("retrieved Players");
+        // using both broadcast and emit to ensure that both players are able to log
+        // in on their client side
+        socket.emit("sendPlayers", player);
+        socket.broadcast.emit("sendPlayers", player);
+    });    
 });
-
-
-
-// SOCKET STUFF HERE
