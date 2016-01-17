@@ -17,7 +17,7 @@ var server = app.listen(5000, function() {
 });
 
 // player dictionary
-var player1, player2;
+var player = []
 
 var io = require('socket.io').listen(server);
 io.sockets.on('connection', function(socket) {
@@ -26,14 +26,18 @@ io.sockets.on('connection', function(socket) {
 
     // Receieves names from a user that logs in from the iOS Client
     socket.on("addPlayer", function (data) {
-        if (!player1) {
-            player1 = data
-        } else if (!player2) {
-            player2 = data
+        if (!player[0]) {
+            player[0] = data
+        } else if (!player[1]) {
+            player[1] = data
         }
-        console.log("Player1:", player1);
-        console.log("Player2:", player2);
+        console.log("Player1:", player[0]);
+        console.log("Player2:", player[1]);
+        socket.broadcast.emit("sendNumber", player);
     });
+
+
+    
 });
 
 

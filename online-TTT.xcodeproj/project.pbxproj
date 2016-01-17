@@ -36,6 +36,7 @@
 		8C9C168A1C4AE653001A0DB9 /* LoadScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9C16891C4AE653001A0DB9 /* LoadScreenViewController.swift */; };
 		8C9C168C1C4AE727001A0DB9 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9C168B1C4AE727001A0DB9 /* GameViewController.swift */; };
 		8C9C168F1C4AEF51001A0DB9 /* exitProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9C168E1C4AEF51001A0DB9 /* exitProtocol.swift */; };
+		8C9C16921C4B2E6C001A0DB9 /* SocketUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9C16911C4B2E6C001A0DB9 /* SocketUrl.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +71,7 @@
 		8C9C16891C4AE653001A0DB9 /* LoadScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadScreenViewController.swift; sourceTree = "<group>"; };
 		8C9C168B1C4AE727001A0DB9 /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		8C9C168E1C4AEF51001A0DB9 /* exitProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = exitProtocol.swift; sourceTree = "<group>"; };
+		8C9C16911C4B2E6C001A0DB9 /* SocketUrl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketUrl.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 		8C9C164B1C4AD8E2001A0DB9 /* online-TTT */ = {
 			isa = PBXGroup;
 			children = (
+				8C9C16911C4B2E6C001A0DB9 /* SocketUrl.swift */,
 				8C9C168D1C4AE734001A0DB9 /* ViewControllers */,
 				8C9C165E1C4AE449001A0DB9 /* SocketIO */,
 				8C9C164C1C4AD8E2001A0DB9 /* AppDelegate.swift */,
@@ -246,6 +249,7 @@
 				8C9C16801C4AE487001A0DB9 /* SocketLogger.swift in Sources */,
 				8C9C167B1C4AE487001A0DB9 /* SocketEventHandler.swift in Sources */,
 				8C9C16831C4AE487001A0DB9 /* SocketStringReader.swift in Sources */,
+				8C9C16921C4B2E6C001A0DB9 /* SocketUrl.swift in Sources */,
 				8C9C16771C4AE487001A0DB9 /* SocketEngine.swift in Sources */,
 				8C9C16731C4AE487001A0DB9 /* SocketAckEmitter.swift in Sources */,
 				8C9C164F1C4AD8E2001A0DB9 /* SignInViewController.swift in Sources */,

@@ -9,7 +9,9 @@
 import UIKit
 
 class SignInViewController: UIViewController, cancelProtocol {
-    let socket = SocketIOClient(socketURL: "http://localhost:5000")
+    // change the socket url to whatever your computer's url is
+    // look at SocketUrl.swift to if you need to change localhost address
+    let socket = SocketIOClient(socketURL: SocketUrl.url())
     
     @IBOutlet weak var nameTextField: UITextField!
     
@@ -36,10 +38,14 @@ class SignInViewController: UIViewController, cancelProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         socket.connect()
-        socket.on("connect") { data, ack in print("Using Sockets") }
+        socket.on("connect") { data, ack in print("Using Sockets in SignInViewController") }
         // Do any additional setup after loading the view, typically from a nib.
     }
-
+    
+    override func viewWillAppear(animated: Bool) {
+        socket.on("connect") { data, ack in print("Using Sockets in SignInViewController - viewWillAppear") }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
