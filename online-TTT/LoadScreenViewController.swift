@@ -11,8 +11,10 @@ import UIKit
 class LoadScreenViewController: UIViewController, exitProtocol {
     // change the socket url to whatever your computer's url is
     // look at SocketUrl.swift to if you need to change localhost address
-    let socket = SocketIOClient(socketURL: SocketUrl.url())
+//    let socket = SocketIOClient(socketURL: SocketUrl.url())
     var players = [String]()
+    var socket: SocketIOClient?
+    var myName: String?
     
     weak var cancelDelegate: cancelProtocol?
     
@@ -24,6 +26,8 @@ class LoadScreenViewController: UIViewController, exitProtocol {
         if segue.identifier == "playGameSegue" {
             let controller = segue.destinationViewController as! GameViewController
             controller.exitDelegate = self
+            controller.socket = self.socket
+            controller.myName = self.myName!
         }
     }
     
@@ -36,10 +40,14 @@ class LoadScreenViewController: UIViewController, exitProtocol {
     }
     
     override func viewDidLoad() {
-        print("view DID LOAD")
-        self.addHandler()
-        socket.connect()
         super.viewDidLoad()
+        print("view DID LOAD")
+        print("myName: ", myName)
+    
+        self.addHandler()
+//        socket.connect()
+        socketFunction()
+        
     }
     
     // if you want to use this for linear in order loading programming
@@ -47,19 +55,26 @@ class LoadScreenViewController: UIViewController, exitProtocol {
 
     }
     
-    func socketFunction(data: AnyObject) {
-        self.players = data[0] as! [String]
-        print(data[0])
-        print(self.players)
-        if self.players.count == 2 {
+    func socketFunction(){
+        socket!.on("gameStart"){ data, ack in
+            print("game Started!!!")
             self.performSegueWithIdentifier("playGameSegue", sender: self)
         }
-        
     }
+//    
+//    func socketFunction(data: AnyObject) {
+//        self.players = data[0] as! [String]
+//        print(data[0])
+//        print(self.players)
+//        if self.players.count == 2 {
+//            self.performSegueWithIdentifier("playGameSegue", sender: self)
+//        }
+//
+//    }
     
     func addHandler() {
-        socket.on("connect") { data, ack in print("Using Sockets in LoadScreenViewController") }
-        socket.on("sendNumber") {data, ack in self.socketFunction(data) }
+//        socket!.on("connect") { data, ack in print("Using Sockets in LoadScreenViewController") }
+//        socket!.on("sendNumber") {data, ack in self.socketFunction(data) }
     }
     
     override func didReceiveMemoryWarning() {
